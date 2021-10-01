@@ -10,7 +10,6 @@ module.exports = async (req, res, next) => {
     }
 
     const token = req.headers.authorization.split(' ').pop();
-    console.log(token);
 
     const tokenRecord = await getTokenRecord(token, 'access');
     if(!tokenRecord) throw new Error('Token is invalid or does not exist!');

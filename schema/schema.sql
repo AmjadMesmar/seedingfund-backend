@@ -24,7 +24,7 @@ CREATE TABLE JWT(
 
 CREATE TABLE PROJECT(
   id uuid DEFAULT uuid_generate_v4 () PRIMARY KEY,
-  user_id uuid NOT NULL UNIQUE,
+  user_id uuid NOT NULL,
   project_name VARCHAR(250),
   project_description TEXT NOT NULL,
   project_sector VARCHAR(250) NOT NULL,

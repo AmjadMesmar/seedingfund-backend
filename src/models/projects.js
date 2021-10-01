@@ -20,7 +20,21 @@ async function createProject(loggedInUserId, project) {
   }
 
 }
-
+async function getAllProjects() {
+  try {
+    let SQL = `SELECT * FROM PROJECT`;
+  
+    let createProjectQuery = await client.query(SQL);
+    return createProjectQuery.rows;
+  
+  }
+  catch (error) {
+    throw new Error(error);
+  }
+  
+}
+  
 module.exports = {
   createProject,
+  getAllProjects,
 };

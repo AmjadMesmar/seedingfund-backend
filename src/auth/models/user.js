@@ -87,16 +87,4 @@ async function getUserById(id) {
   }
 }
 
-async function getUserIdByToken(token) {
-  try {
-    let SQL = `SELECT user_id FROM JWT WHERE access_token=$1`;
-    let CheckToken = [token];
-    let usernameQuery = await client.query(SQL, CheckToken);
-    console.log('user by token: ',usernameQuery.rows[0].user_id );
-    return usernameQuery.rows[0].user_id;
-  } catch (e) {
-    throw new Error(e.message);
-  }
-}
-
-module.exports = { createUser, getUser, getUserById, getUserByEmail, updateUserPassword,getUserIdByToken};
+module.exports = { createUser, getUser, getUserById, getUserByEmail, updateUserPassword};

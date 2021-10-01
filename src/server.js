@@ -12,7 +12,7 @@ const app = express();
 const errorHandler = require('./error-handlers/500.js');
 const notFound = require('./error-handlers/404.js');
 // const v1Router = require('./routes/v1');
-// const authRouter = require('./auth/routes');
+const authRouter = require('./auth/routes');
 
 
 
@@ -25,7 +25,7 @@ app.use(express.urlencoded({ extended: true }));
 app.get('/test', (req, res) => {
   res.send('Hello Word! :)');
 });
-// app.use('/auth',authRouter);
+app.use('/auth',authRouter);
 // app.use('/api/v1',v1Router);
 
 // Catchalls

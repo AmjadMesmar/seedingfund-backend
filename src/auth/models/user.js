@@ -8,15 +8,19 @@ const bcrypt = require('bcrypt');
 
 async function createUser(data) {
   try {
-    let SQL = `INSERT INTO USERS (user_name,hashed_password,email,is_admin) VALUES ($1,$2,$3,$4) RETURNING *;`;
+    // Checking if the regesting user is an admin type to enter the right query:
+    
+    let isAdmin = data.is_admin;
+    let SQL = isAdmin ? `INSERT INTO USERS (user_name,hashed_password,email,is_admin) VALUES ($1,$2,$3,$4) RETURNING *;` : `INSERT INTO USERS (user_name,hashed_password,email) VALUES ($1,$2,$3) RETURNING *;`;
+    
     data.password = await bcrypt.hash(data.password, 10);
     let user = data.user_name.toLowerCase().trim(); // make user_name a lower case.
     let email = data.email.toLowerCase().trim(); // make email a lower case.
-    let isAdmin = data.is_admin;
 
-    let safeValues = [user, data.password, email,isAdmin];
+    let safeValues = isAdmin ? [user, data.password, email,isAdmin] : [user, data.password, email] ;
     let usernameQuery = await client.query(SQL, safeValues);
     return usernameQuery.rows[0];
+
   } catch (e) {
     throw new Error(e.message);
   }

@@ -124,7 +124,7 @@ const signInHandler = async (req, res, next) => {
 
 // This handler is to delete the user's access and refresh tokens on sign out request:
 
-const logoutHandler = async (req, res, next) => {
+const signoutHandler = async (req, res, next) => {
   try {
     await deleteToken(req.user.id);
     res.status(200).json({
@@ -160,7 +160,7 @@ const refreshHandler = async (req, res, next) => {
 module.exports = {
   signUpHandler,
   signInHandler,
-  logoutHandler,
+  signoutHandler,
   refreshHandler,
   updateUserPasswordHandler,
 };

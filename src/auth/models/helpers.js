@@ -41,6 +41,8 @@ async function authenticateWithToken(token, type = 'access') {
   }
 }
 
+// This function is used to create new access and refresh tokens for users:
+
 function getToken(userId, tokenType = 'access') {
   try {
     let payload = {

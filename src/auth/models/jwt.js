@@ -4,7 +4,7 @@
 const client = require('../../models/db');
 const { getToken } = require('../models/helpers');
 
-// This function is used for creating tokens for users:
+// This function is used for getting tokens for users and adding them to database:
 
 async function createToken(user_id) {
   try {

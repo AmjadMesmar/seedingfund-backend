@@ -50,7 +50,7 @@ async function getUser(username) {
   }
 }
 
-// This function is used to get user information using email:
+// This function is used to get user information using email or user_name:
 
 async function getUserByEmail(email, username='') {
   try {

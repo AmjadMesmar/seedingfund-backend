@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 const { getUserById, getUserByEmail } = require('./user');
 
 // BASIC AUTH
+
 async function authenticateBasic(email, password) {
   try {
     let user = await getUserByEmail(email);
@@ -22,6 +23,7 @@ async function authenticateBasic(email, password) {
 }
 
 // BEARER AUTH
+
 async function authenticateWithToken(token, type = 'access') {
   try {
     const parsedToken = jwt.verify(token, process.env.SECRET); //verify token

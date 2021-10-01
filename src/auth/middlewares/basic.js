@@ -25,6 +25,6 @@ module.exports = async (req, res, next) => {
   }
 
   function _authError() {
-    res.status(403).send('Invalid Login');
+    res.status(403).send('Either email or password is wrong!');
   }
 };

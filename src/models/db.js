@@ -5,11 +5,11 @@ const DATABASE_URL = process.env.DATABASE_URL;   // calling DATABASE_URL from en
 
 // Adding DATABASE_YRL for Heroku
 
-// const client = new Client({ connectionString: process.env.DATABASE_URL,ssl: { rejectUnauthorized: false } });
+const client = new Client({ connectionString: process.env.DATABASE_URL,ssl: { rejectUnauthorized: false } });
 
 // Adding DATABASE_YRL for localhost
 
-const client = new Client(process.env.DATABASE_URL);
+// const client = new Client(process.env.DATABASE_URL);
 
 
 

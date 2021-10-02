@@ -6,6 +6,7 @@ const {
   getUserByEmail,
   getUserById,
   updateUserPassword,
+  getAllUsers,
 } = require('../models/user');
 const { authenticateWithToken } = require('../models/helpers');
 const { validateEmail, validatePassword, checkPassword } = require('./helpers');
@@ -157,10 +158,23 @@ const refreshHandler = async (req, res, next) => {
   }
 };
 
+const getAllUsersHandler = async (req, res, next) => {
+  try {
+    let allUsers = await getAllUsers();
+    let users = allUsers.length;
+    return res.status(200).json({users,allUsers});
+
+  }
+  catch (e) {
+    next(e);
+  }
+};
+
 module.exports = {
   signUpHandler,
   signInHandler,
   signoutHandler,
   refreshHandler,
   updateUserPasswordHandler,
+  getAllUsersHandler,
 };

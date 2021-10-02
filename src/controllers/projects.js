@@ -1,6 +1,6 @@
 'use strict';
 
-const { createProject, getAllProjects } = require('../models/projects');
+const { createProject, getAllProjects, getUserProjects } = require('../models/projects');
 const { getUserIdByToken } = require('../auth/models/user');
 
 
@@ -19,11 +19,23 @@ let createProjectHandler = async (req, res, next) => {
 let getAllProjecstHandler = async (req, res, next) => {
   try {
     let allProjects = await getAllProjects();
-    res.status(200).json(allProjects);
+    let count = allProjects.length;
+    res.status(200).json({count,allProjects});
   } catch (e) {
     next(e);
   }
 };
+
+let getUserProjectsHandler = async (req, res, next) => {
+  try {
+    let allProjects = await getUserProjects(req.user.id);
+    let count = allProjects.length;
+    res.status(200).json({count,allProjects});
+  } catch (e) {
+    next(e);
+  }
+};
+
 
 let getProjectDetailsHandler = async (req, res, next) => {
   try {
@@ -70,6 +82,7 @@ let deleteProjectHandler = async (req, res, next) => {
 module.exports = {
   createProjectHandler,
   getAllProjecstHandler,
+  getUserProjectsHandler,
   getProjectDetailsHandler,
   updateProjectHandler,
   deleteProjectHandler,

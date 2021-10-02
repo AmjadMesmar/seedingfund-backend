@@ -87,4 +87,15 @@ async function getUserById(id) {
   }
 }
 
-module.exports = { createUser, getUser, getUserById, getUserByEmail, updateUserPassword};
+async function getAllUsers() {
+  try {
+    let SQL = `SELECT * FROM USERS`;
+    let usernameQuery = await client.query(SQL);
+
+    return usernameQuery.rows;
+  } catch (e) {
+    throw new Error(e.message);
+  }
+}
+
+module.exports = { createUser, getUser, getUserById, getUserByEmail, updateUserPassword,getAllUsers};

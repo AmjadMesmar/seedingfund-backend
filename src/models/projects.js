@@ -19,6 +19,7 @@ async function createProject(loggedInUserId, project) {
     throw new Error(error);
   }
 
+
 }
 async function getAllProjects() {
   try {
@@ -33,8 +34,25 @@ async function getAllProjects() {
   }
   
 }
+
+async function getUserProjects(userId) {
+  try {
+    let SQL = `SELECT * FROM PROJECT WHERE user_id=$1`;
+    let safeValues = [userId];
+    let createProjectQuery = await client.query(SQL,safeValues);
+    console.log (createProjectQuery);
+    return createProjectQuery.rows;
+    
+  }
+  catch (error) {
+    throw new Error(error);
+  }
+    
+}
+
   
 module.exports = {
   createProject,
   getAllProjects,
+  getUserProjects,
 };

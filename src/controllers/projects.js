@@ -3,6 +3,7 @@
 const { createProject, getAllProjects, getUserProjects, getProjectDetails, updateProject, deleteProject } = require('../models/projects');
 const { getUserIdByToken } = require('../auth/models/user');
 
+// This handler is used to create a new project:
 
 let createProjectHandler = async (req, res, next) => {
   try {
@@ -16,6 +17,8 @@ let createProjectHandler = async (req, res, next) => {
   }
 };
 
+// This handler is used to get all projects for admins only:
+
 let getAllProjecstHandler = async (req, res, next) => {
   try {
     let allProjects = await getAllProjects();
@@ -25,6 +28,8 @@ let getAllProjecstHandler = async (req, res, next) => {
     next(e);
   }
 };
+
+// This handler is usedd to get user's projects:
 
 let getUserProjectsHandler = async (req, res, next) => {
   try {
@@ -36,6 +41,7 @@ let getUserProjectsHandler = async (req, res, next) => {
   }
 };
 
+// This handler is used to get a project details:
 
 let getProjectDetailsHandler = async (req, res, next) => {
   try {
@@ -46,6 +52,8 @@ let getProjectDetailsHandler = async (req, res, next) => {
   }
 };
 
+// This handler is used to edit project's details:
+
 let updateProjectHandler = async (req, res, next) => {
   try {
     await updateProject(req.params.project_id, req.body);
@@ -54,6 +62,8 @@ let updateProjectHandler = async (req, res, next) => {
     next(e);
   }
 };
+
+// This handler is used to delete a project:
 
 let deleteProjectHandler = async (req, res, next) => {
   try {

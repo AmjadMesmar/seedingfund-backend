@@ -2,6 +2,8 @@
 
 const client = require('./db');
 
+// Create a new project and add it to database:
+
 async function createProject(loggedInUserId, project) {
   try {
     let SQL = `INSERT INTO PROJECT (user_id,project_name,project_description,project_sector) VALUES ($1, $2, $3,$4) RETURNING *;`;
@@ -21,6 +23,9 @@ async function createProject(loggedInUserId, project) {
 
 
 }
+
+// Get all projects from database:
+
 async function getAllProjects() {
   try {
     let SQL = `SELECT * FROM PROJECT`;
@@ -33,6 +38,8 @@ async function getAllProjects() {
   }
   
 }
+
+// Get all projects for a specific user:
 
 async function getUserProjects(userId) {
   try {
@@ -48,6 +55,8 @@ async function getUserProjects(userId) {
     
 }
 
+// Get a project's details:
+
 async function getProjectDetails(projectId) {
   try {
     let SQL = `SELECT * FROM PROJECT WHERE id=$1`;
@@ -61,6 +70,8 @@ async function getProjectDetails(projectId) {
   }
       
 }
+
+// Edit project's information and update it into the databse:
 
 async function updateProject(projectId,body) {
   try {
@@ -79,6 +90,8 @@ async function updateProject(projectId,body) {
   }
         
 }
+
+// Delete a specific project:
 
 async function deleteProject(projectId) {
   try {

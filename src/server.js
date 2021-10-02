@@ -26,6 +26,9 @@ app.use(express.urlencoded({ extended: true }));
 app.get('/test', (req, res) => {
   res.send('Hello Word! :)');
 });
+app.get('/', (req, res) => {
+  res.send('Seedingfund API!!');
+});
 app.use('/auth',authRouter);
 app.use('/api/v1',v1Router);
 

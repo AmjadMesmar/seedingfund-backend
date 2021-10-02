@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 'use strict';
 
 const bcrypt = require('bcrypt');
@@ -30,8 +31,34 @@ async function checkPassword(password, encryptedPassword) {
   }
 }
 
+// async function checkAuthorization(firstId, secondId,checkType) {
+//   try {
+//     let SQL;
+//     let safeValues;
+//     let authorized = false;
+//     if(checkType === 'project'){
+//       SQL = `SELECT * FROM PROJECT WHERE id=$1;`;
+//       safeValues = [firstId];
+
+//       let userQuery = await (SQL,safeValues);
+//       console.log('🚀 ~ file: helpers.js ~ line 44 ~ checkAuthorization ~ userQuery', userQuery);
+//       console.log('🚀 ~ file: helpers.js ~ line 46 ~ checkAuthorization ~ firstId', firstId);
+//       if(firstId === userQuery){
+//         authorized = true;
+//         console.log('🚀 ~ file: helpers.js ~ line 47 ~ checkAuthorization ~ authorized', authorized);
+//       }
+//     }
+//     return authorized;
+
+//   } catch (e) {
+//     throw new Error(e);
+//   }
+// }
+
+
 module.exports = {
   validateEmail,
   validatePassword,
   checkPassword,
+  // checkAuthorization,
 };

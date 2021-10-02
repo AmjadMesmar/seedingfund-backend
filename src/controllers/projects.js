@@ -1,6 +1,6 @@
 'use strict';
 
-const { createProject, getAllProjects, getUserProjects } = require('../models/projects');
+const { createProject, getAllProjects, getUserProjects, getProjectDetails, updateProject, deleteProject } = require('../models/projects');
 const { getUserIdByToken } = require('../auth/models/user');
 
 
@@ -39,13 +39,8 @@ let getUserProjectsHandler = async (req, res, next) => {
 
 let getProjectDetailsHandler = async (req, res, next) => {
   try {
-    const token = req.headers.authorization.split(' ').pop();
-    let userId = await getUserIdByToken(token);
-    await createProject(userId, req.body);
-    res.status(200).json({
-      status: 200,
-      message: 'Project created successfully',
-    });
+    let project = await getProjectDetails(req.params.project_id);
+    res.status(200).json({project});
   } catch (e) {
     next(e);
   }
@@ -53,13 +48,8 @@ let getProjectDetailsHandler = async (req, res, next) => {
 
 let updateProjectHandler = async (req, res, next) => {
   try {
-    const token = req.headers.authorization.split(' ').pop();
-    let userId = await getUserIdByToken(token);
-    await createProject(userId, req.body);
-    res.status(200).json({
-      status: 200,
-      message: 'Project created successfully',
-    });
+    await updateProject(req.params.project_id, req.body);
+    res.status(200).json('Project updated successfully!');
   } catch (e) {
     next(e);
   }
@@ -67,13 +57,8 @@ let updateProjectHandler = async (req, res, next) => {
 
 let deleteProjectHandler = async (req, res, next) => {
   try {
-    const token = req.headers.authorization.split(' ').pop();
-    let userId = await getUserIdByToken(token);
-    await createProject(userId, req.body);
-    res.status(200).json({
-      status: 200,
-      message: 'Project created successfully',
-    });
+    await deleteProject(req.params.project_id);
+    res.status(200).json('Project deleted successfully!');
   } catch (e) {
     next(e);
   }

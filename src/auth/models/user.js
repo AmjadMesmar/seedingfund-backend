@@ -98,4 +98,16 @@ async function getAllUsers() {
   }
 }
 
-module.exports = { createUser, getUser, getUserById, getUserByEmail, updateUserPassword,getAllUsers};
+async function getUserDetails(userId) {
+  try {
+    let SQL = `SELECT * FROM USERS WHERE id=$1`;
+    let safeValues =[userId];
+    let usernameQuery = await client.query(SQL,safeValues);
+
+    return usernameQuery.rows;
+  } catch (e) {
+    throw new Error(e.message);
+  }
+}
+
+module.exports = { createUser, getUser, getUserById, getUserByEmail, updateUserPassword,getAllUsers,getUserDetails};

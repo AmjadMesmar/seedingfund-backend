@@ -7,6 +7,7 @@ const {
   getUserById,
   updateUserPassword,
   getAllUsers,
+  getUserDetails,
 } = require('../models/user');
 const { authenticateWithToken } = require('../models/helpers');
 const { validateEmail, validatePassword, checkPassword } = require('./helpers');
@@ -170,6 +171,16 @@ const getAllUsersHandler = async (req, res, next) => {
   }
 };
 
+const getUserHandler = async (req, res, next) => {
+  try {
+    let user = await getUserDetails(req.user.id);
+    return res.status(200).json({user});
+
+  }
+  catch (e) {
+    next(e);
+  }
+};
 module.exports = {
   signUpHandler,
   signInHandler,
@@ -177,4 +188,5 @@ module.exports = {
   refreshHandler,
   updateUserPasswordHandler,
   getAllUsersHandler,
+  getUserHandler,
 };

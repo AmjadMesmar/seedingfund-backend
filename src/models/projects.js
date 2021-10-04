@@ -75,12 +75,12 @@ async function getProjectDetails(projectId) {
 
 async function updateProject(projectId,body) {
   try {
-    let SQL = `UPDATE PROJECT SET project_name=$1,project_description=$2,project_sector=$3,project_status=$4 WHERE id=$5;`;
-    let project_name = body.project_name;
-    let project_description = body.project_description;
-    let project_sector = body.project_sector;
+    let SQL = `UPDATE PROJECT SET project_status=$1 WHERE id=$2;`;
+    // let project_name = body.project_name;
+    // let project_description = body.project_description;
+    // let project_sector = body.project_sector;
     let project_status = body.project_status;
-    let safeValues = [project_name,project_description,project_sector,project_status,projectId];
+    let safeValues = [project_status,projectId];
     let createProjectQuery = await client.query(SQL,safeValues);
     return createProjectQuery;
         
